@@ -64,7 +64,7 @@ def choice(message):
                            photo[mes],
                            reply_markup=keyboard)
         elif any(git in message.text for git in ('git', 'гит', 'гид', 'реп')):
-            mes = message.text
+            mes = "Вот ссылка на github"
             button_list = [
                 InlineKeyboardButton(text='bot на github',
                                      url=git_url)
@@ -101,7 +101,14 @@ def handle_start(message):
         keyboard = InlineKeyboardMarkup(build_menu(button_list, 2))
         bot.send_message(message.chat.id, text=text, reply_markup=keyboard)
     elif message.text == '/git':
-        print('git')
+        mes = "Вот ссылка на github"
+        button_list = [
+            InlineKeyboardButton(text='bot на github',
+                                 url=git_url)
+        ]
+        keyboard = InlineKeyboardMarkup(build_menu(buttons=button_list,
+                                                   footer_button=True))
+        bot.send_message(message.chat.id, text=mes, reply_markup=keyboard)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data)
